@@ -1,4 +1,4 @@
-package nl.fampennings.keyboard;
+package com.licheedev.hexkeyboard;
 
 import android.annotation.TargetApi;
 import android.content.Context;

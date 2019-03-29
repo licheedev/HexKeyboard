@@ -17,7 +17,7 @@
  * documentation would be appreciated but is not required.
  */
 
-package nl.fampennings.keyboard;
+package com.licheedev.hexkeyboard;
 
 import android.app.Activity;
 import android.inputmethodservice.Keyboard;
@@ -40,9 +40,9 @@ import android.widget.EditText;
  * @author Maarten Pennings
  * @date 2012 December 23
  */
-class CustomKeyboard {
+public class HexKeyboard {
 
-    /** A link to the KeyboardView that is used to render this CustomKeyboard. */
+    /** A link to the KeyboardView that is used to render this HexKeyboard. */
     private KeyboardView mKeyboardView;
     /** A link to the activity that hosts the {@link #mKeyboardView}. */
     private Activity mHostActivity;
@@ -133,12 +133,11 @@ class CustomKeyboard {
      *
      * @param host The hosting activity.
      * @param viewid The id of the KeyboardView.
-     * @param layoutid The id of the xml file containing the keyboard layout.
      */
-    public CustomKeyboard(Activity host, int viewid, int layoutid) {
+    public HexKeyboard(Activity host, int viewid) {
         mHostActivity = host;
         mKeyboardView = (KeyboardView) mHostActivity.findViewById(viewid);
-        mKeyboardView.setKeyboard(new Keyboard(mHostActivity, layoutid));
+        mKeyboardView.setKeyboard(new Keyboard(mHostActivity, R.xml.hexkbd));
         mKeyboardView.setPreviewEnabled(false); // NOTE Do not show the preview balloons
         mKeyboardView.setOnKeyboardActionListener(mOnKeyboardActionListener);
         // Hide the standard keyboard initially
@@ -146,12 +145,12 @@ class CustomKeyboard {
             .setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
-    /** Returns whether the CustomKeyboard is visible. */
+    /** Returns whether the HexKeyboard is visible. */
     public boolean isCustomKeyboardVisible() {
         return mKeyboardView.getVisibility() == View.VISIBLE;
     }
 
-    /** Make the CustomKeyboard visible, and hide the system keyboard for view v. */
+    /** Make the HexKeyboard visible, and hide the system keyboard for view v. */
     public void showCustomKeyboard(View v) {
         mKeyboardView.setVisibility(View.VISIBLE);
         mKeyboardView.setEnabled(true);
@@ -161,7 +160,7 @@ class CustomKeyboard {
         }
     }
 
-    /** Make the CustomKeyboard invisible. */
+    /** Make the HexKeyboard invisible. */
     public void hideCustomKeyboard() {
         mKeyboardView.setVisibility(View.GONE);
         mKeyboardView.setEnabled(false);
